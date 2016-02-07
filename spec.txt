@@ -1,0 +1,21 @@
+Write a basic tax calculator in Python.
+
+It should take as input a currency, product code and price of the product, e.g.,
+"GBP ABC123 2.50" would output something like:
+
+    VAT on Bread worth £2.50 in the United Kingdom is £0.50 (20%)
+
+Your calculator must handle the following scenarios:
+
+    * United Kingdom
+        * Tax on a 75cl bottle of wine is £2.00
+        * Tax on cigarettes is 25%
+
+    * Germany
+        * Tax on cigarettes is 30%
+        * The first €2 on all products is not taxable
+
+    * All currencies and products otherwise are taxed at 10%
+
+Write your calculator in such a way that it will be easy to extend (think about
+how you would add extra currencies with wacky tax laws).
