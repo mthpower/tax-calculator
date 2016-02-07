@@ -56,6 +56,16 @@ from tax_calculator import calc
         },
         M('0.60', 'EUR')
     ),
+    # GER: The first €2 on all products is not taxable -> €0 tax
+    (
+        {
+            'country': 'GER',
+            'product_code': 'FAIL',
+            'price': '1.50',
+            'currency': 'EUR',
+        },
+        M('0.00', 'EUR')
+    ),
     # Unknown Countries should be taxed at 10%
     (
         {

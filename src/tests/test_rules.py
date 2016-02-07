@@ -15,5 +15,7 @@ def test_flat():
 
 
 def test_tax_band():
-    assert rules.tax_band(M('100'), M('-2')) == rules.TaxResult(
+    assert rules.tax_band(M('100'), M('2'), rules.ZERO_PC) == rules.TaxResult(
         tax=M('0'), next_amount=M('98'))
+    assert rules.tax_band(M('0.5'), M('2'), rules.ZERO_PC) == rules.TaxResult(
+        tax=M('0'), next_amount=M('0'))

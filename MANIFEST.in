@@ -1,0 +1,6 @@
+recursive-include src *.py
+prune src/tests
+
+include README.md
+include setup.py
+include setup.cfg

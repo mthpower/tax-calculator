@@ -1,4 +1,27 @@
 # -*- coding: utf-8 -*-
+"""
+A Product Catalogue.
+
+Tax is calculated by looking up the product code in the country's product
+catalogue. At present, these have to be be build per country, and map product
+codes to namedtuple instances that have rules. Rules is expected to a be a list
+of callable tax rules. Ordering is important, as it allows the specification of
+tax laws such as "The first €2 on all products is not taxable".
+
+Defaults are set up if the Product or Country is not known.
+
+I chose to stick with implementing the countries and their tax rules in
+standard data types with some help from `collections. After a certain point
+this approach will begin to show it's limitations. A heuristic for this will
+be when structures that mimic Foreign Keys start to show up. This is a good
+time to move to a different data model.
+
+At the moment, I don't have a nice way to say "Apply this rule to all products
+of a country" which is a limitation.
+
+A further limitation is that groups of products are not implemented, just a
+straightforward lookup from product code -> product -> rules.
+"""
 from collections import defaultdict, namedtuple
 
 from tax_calculator import rules

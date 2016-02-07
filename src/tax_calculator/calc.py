@@ -1,4 +1,20 @@
 # -*- coding: utf-8 -*-
+"""
+A Tax Calulator.
+
+This module contains the CLI entry point to the tax calculator, using the
+brilliant `click` module from Armin Ronacher.
+
+The tax calculator has the slightly convoluted logic of dealing with both
+the possible return types of the rules. I can see simplifing all the rules
+to return a TaxResult being a good move that would simplify the code here.
+At the time of writing I wanted to keep the interface of the simpler rules
+(e.g.: `flat` and `percent`) as simple as possible.
+
+I haven't explored the behaviour of the Money class and my code with negative
+amounts fully, or pushed the edge cases much. If it isn't in the tests, I
+didn't try it.
+"""
 import click
 from moneyed.classes import Money
 
