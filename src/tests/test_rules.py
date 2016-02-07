@@ -8,5 +8,5 @@ def test_percent():
     assert rules.percent('100.0', '110') == 110.0
 
 
-def test_vat():
-    assert rules.VAT('100.0') == 20.0
+def test_flat():
+    assert rules.flat('123', '2') == 2.0

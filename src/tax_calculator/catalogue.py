@@ -1,19 +1,37 @@
-from collections import namedtuple
+from collections import defaultdict, namedtuple
 
-from tax_calculator.rules import UK_WINE, VAT
+from tax_calculator import rules
 
 Product = namedtuple('Product', ['name', 'rules'])
 
-CATALOGUE = {
-    'BREAD': Product(name='Bread', rules=VAT),
-    'WINE75CL': Product(name='Wine - 75cL', rules=UK_WINE),
+
+def default_product():
+    return Product(name='Unknown Product', rules=rules.DEFAULT)
+
+
+def country(dict_):
+    return defaultdict(default_product, dict_)
+
+
+UK_CATALOGUE = {
+    'BREAD': Product(name='Bread', rules=rules.VAT),
+    'WINE75CL': Product(name='Wine - 75cL', rules=rules.UK_WINE),
+    'CIG': Product(name='Cigarettes', rules=rules.UK_CIG),
 }
+
+GER_CATALOGUE = country({
+    'CIG': Product(name='Cigarettes', rules=rules.GER_CIG),
+})
 
 
 class Catalogue(object):
 
-    catalogue = CATALOGUE
+    catalogues = {
+       'GBR': UK_CATALOGUE,
+       'GER': GER_CATALOGUE,
+    }
 
     @classmethod
-    def fetch_by_code(cls, product_code):
-        return cls.catalogue[product_code]
+    def fetch(cls, country, product_code):
+        country_cat = cls.catalogues[country]
+        return country_cat[product_code]

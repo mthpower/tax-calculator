@@ -27,6 +27,9 @@ def percent(price, percent):
     return price * as_coeff
 
 VAT = partial(percent, percent='20')
+UK_CIG = partial(percent, percent='25')
+GER_CIG = partial(percent, percent='30')
+DEFAULT = partial(percent, percent='10')
 
 
 @decimalise
