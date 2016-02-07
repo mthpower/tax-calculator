@@ -4,4 +4,4 @@
 # This file symlinks the tax-calculator command to the user's bin           #
 # ------------------------------------------------------------------------- #
 
-/opt/falcon-experiment/bin/tax-calculator  /usr/bin/tax-calculator
+/opt/tax-calculator/tax-calculator/bin/tax-calc /usr/local/bin/tax-calc
