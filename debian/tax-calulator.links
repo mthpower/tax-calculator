@@ -1,0 +1,7 @@
+# ------------------------------------------------------------------------- #
+# DEBIAN PACKAGE LINKS FILE                                                 #
+#                                                                           #
+# This file symlinks the tax-calculator command to the user's bin           #
+# ------------------------------------------------------------------------- #
+
+/opt/falcon-experiment/bin/tax-calculator  /usr/bin/tax-calculator

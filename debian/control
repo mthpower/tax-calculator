@@ -1,0 +1,12 @@
+Source: tax-calculator
+Section: python
+Priority: extra
+Maintainer: Matthew Power <matthew@mthpower.uk>
+Build-Depends: debhelper (>= 9), python, dh-virtualenv (>= 0.7), python-dev, python-pip, python-virtualenv
+Standards-Version: 3.9.5
+
+Package: tax-calculator
+Architecture: any
+Pre-Depends: dpkg (>= 1.16.1), python2.7-minimal, ${misc:Pre-Depends}
+Depends: ${python:Depends}, ${misc:Depends}
+Description: A tax calculator CLI
