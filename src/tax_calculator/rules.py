@@ -5,7 +5,7 @@ from functools import partial
 
 from moneyed.classes import Money as M
 
-TaxResult = namedtuple('TaxResult', ['tax', 'next_price'])
+TaxResult = namedtuple('TaxResult', ['tax', 'next_amount'])
 
 
 def percent(price, percent):
@@ -25,8 +25,8 @@ UK_WINE = partial(flat, amount=M('2', currency='GBP'))
 
 def tax_band(price, amount):
     curr = price.currency
-    next_price = price + amount
-    return TaxResult(tax=M('0', curr), next_price=next_price)
+    next_amount = price + amount
+    return TaxResult(tax=M('0', curr), next_amount=next_amount)
 
 
 DEDUCT_TWO_EUR = partial(tax_band, amount=M('-2', 'EUR'))
