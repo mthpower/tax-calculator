@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from collections import defaultdict, namedtuple
 
 from tax_calculator import rules
@@ -19,13 +20,13 @@ def GER_default_product():
     )
 
 
-def UK_default_product():
+def GBR_default_product():
     return Product(name='Unknown Product', rules=[rules.VAT])
 
 
-UK_CATALOGUE = defaultdict(UK_default_product, {
+GBR_CATALOGUE = defaultdict(GBR_default_product, {
     'BREAD': Product(name='Bread', rules=[rules.VAT]),
-    'WINE75CL': Product(name='Wine - 75cL', rules=[rules.UK_WINE]),
+    'WINE75CL': Product(name='Wine - 75cL', rules=[rules.GBR_WINE]),
     'CIG': Product(name='Cigarettes', rules=[rules.TWENTY_FIVE_PC]),
 })
 
@@ -40,7 +41,7 @@ GER_CATALOGUE = defaultdict(GER_default_product, {
 class Catalogue(object):
 
     catalogues = {
-       'GBR': UK_CATALOGUE,
+       'GBR': GBR_CATALOGUE,
        'GER': GER_CATALOGUE,
     }
 

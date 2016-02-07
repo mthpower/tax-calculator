@@ -20,7 +20,7 @@ THIRTY_PC = partial(percent, percent='30')
 def flat(price, amount):
     return amount
 
-UK_WINE = partial(flat, amount=M('2', currency='GBP'))
+GBR_WINE = partial(flat, amount=M('2', currency='GBP'))
 
 
 def tax_band(price, amount):
