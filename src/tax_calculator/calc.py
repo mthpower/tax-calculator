@@ -4,6 +4,11 @@ from moneyed.classes import Money
 
 from tax_calculator.catalogue import Catalogue
 
+TEMPLATE = (
+    'Tax on {product.name} worth {price} in {country} is '
+    '{tax.amount} {tax.currency}'
+)
+
 
 def calculate_tax(country, product_code, price, currency):
     price = Money(amount=price, currency=currency)
@@ -18,17 +23,23 @@ def calculate_tax(country, product_code, price, currency):
         else:
             tax += tax_result
 
-    return tax
+    return product, tax
 
 
 @click.command()
-@click.argument('country', help='The country in which to apply the tax')
-@click.argument('product code', help='A product code. e.g.: CIG')
-@click.argument('price', help='Unitless price of the product')
-@click.argument('currency', help='The currency used. e.g: GBP')
-@click.option('--verbose', help='verbose')
-def cli(country, product_code, price, currency):
-    calculate_tax(country, product_code, price, currency)
+@click.argument('country')
+@click.argument('product')
+@click.argument('price')
+@click.argument('currency')
+@click.option('--verbose', help='verbose', is_flag=True)
+def cli(country, product, price, currency, verbose):
+    product, tax = calculate_tax(country, product, price, currency)
+    if not verbose:
+        print(tax.amount, tax.currency)
+    else:
+        print(TEMPLATE.format(
+            product=product, price=price, country=country, tax=tax
+        ))
 
 if __name__ == '__main__':
     cli()

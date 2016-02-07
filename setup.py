@@ -31,7 +31,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'tax-calc = tax_calculator.calc:main',
+            'tax-calc = tax_calculator.calc:cli',
         ],
     },
 )
