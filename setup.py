@@ -18,6 +18,7 @@ setup(
     zip_safe=True,
     install_requires=[
         'click',
+        'py-moneyed',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

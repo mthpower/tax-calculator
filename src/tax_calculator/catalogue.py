@@ -6,21 +6,34 @@ Product = namedtuple('Product', ['name', 'rules'])
 
 
 def default_product():
-    return Product(name='Unknown Product', rules=rules.DEFAULT)
+    return Product(name='Unknown Product', rules=[rules.TEN_PC])
 
 
 def country(dict_):
     return defaultdict(default_product, dict_)
 
 
-UK_CATALOGUE = {
-    'BREAD': Product(name='Bread', rules=rules.VAT),
-    'WINE75CL': Product(name='Wine - 75cL', rules=rules.UK_WINE),
-    'CIG': Product(name='Cigarettes', rules=rules.UK_CIG),
-}
+def GER_default_product():
+    return Product(
+        name='Unknown Product', rules=[rules.DEDUCT_TWO_EUR, rules.TEN_PC]
+    )
 
-GER_CATALOGUE = country({
-    'CIG': Product(name='Cigarettes', rules=rules.GER_CIG),
+
+def UK_default_product():
+    return Product(name='Unknown Product', rules=[rules.VAT])
+
+
+UK_CATALOGUE = defaultdict(UK_default_product, {
+    'BREAD': Product(name='Bread', rules=[rules.VAT]),
+    'WINE75CL': Product(name='Wine - 75cL', rules=[rules.UK_WINE]),
+    'CIG': Product(name='Cigarettes', rules=[rules.TWENTY_FIVE_PC]),
+})
+
+GER_CATALOGUE = defaultdict(GER_default_product, {
+    'CIG': Product(
+        name='Cigarettes',
+        rules=[rules.DEDUCT_TWO_EUR, rules.THIRTY_PC]
+    ),
 })
 
 
@@ -32,6 +45,10 @@ class Catalogue(object):
     }
 
     @classmethod
-    def fetch(cls, country, product_code):
-        country_cat = cls.catalogues[country]
+    def fetch(cls, country_code, product_code):
+        try:
+            country_cat = cls.catalogues[country_code]
+        except KeyError:
+            country_cat = country({})
+
         return country_cat[product_code]
