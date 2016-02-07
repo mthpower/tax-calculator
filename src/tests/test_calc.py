@@ -6,7 +6,7 @@ from moneyed.classes import Money as M
 from tax_calculator import calc
 
 
-@pytest.mark.parametrize('inputs,tax', [
+@pytest.mark.parametrize('inputs,expected_tax', [
     (
         {
             'country': 'GBR',
@@ -77,5 +77,6 @@ from tax_calculator import calc
         M('1.00', 'GBP')
     ),
 ])
-def test_calculate_tax(inputs, tax):
-    assert calc.calculate_tax(**inputs) == tax
+def test_calculate_tax(inputs, expected_tax):
+    product, tax = calc.calculate_tax(**inputs)
+    assert tax == expected_tax

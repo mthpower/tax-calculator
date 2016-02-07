@@ -20,5 +20,5 @@ VOLUME /mnt/dist
 WORKDIR /root/tax-calculator
 
 ENV DH_VIRTUALENV_INSTALL_ROOT /opt/tax-calculator/
-ENV DESTINATION_DPKG_DIR /mnt/dist/
-CMD ["dpkg-buildpackage", "-us", "-uc", "-b", "--changes-option=-u/mnt/dist/"]
+ENV DESTINATION_DPKG_DIR /mnt/dist
+CMD ["dpkg-buildpackage", "-us", "-uc", "-b", "--changes-option=-u/mnt/dist"]

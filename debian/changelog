@@ -1,0 +1,5 @@
+tax-calculator (0.0.0) UNRELEASED; urgency=medium
+
+  * Initial Debian package
+
+ -- Matthew Power <matthew@matthew-ThinkPad>  Sun, 07 Feb 2016 21:47:57 +0000

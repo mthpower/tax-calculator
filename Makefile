@@ -45,7 +45,7 @@ env:
 	./.env/bin/pip install sphinx alabaster
 
 frozen-requirements:
-	virtualenv .frozenenv --clear -p $$(which pypy3)
+	virtualenv .frozenenv --clear -p $$(which python3)
 	./.frozenenv/bin/pip install --upgrade pip --upgrade setuptools wheel
 	./.frozenenv/bin/pip install .
 	./.frozenenv/bin/pip freeze | grep -v ".dev" | grep -v "tax-calculator" > requirements.txt
